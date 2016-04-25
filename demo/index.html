@@ -17,23 +17,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../locals-iconset.html">
     <link rel="import" href="../../iron-icon/iron-icon.html">
 
+    <link rel="import" href="../../locals-icon/locals-icon.html">
+
     <style type="text/css">
-    .green {
-     color: green;
-    }
-
-      .big {
-    --iron-icon-height: 32px;
-    --iron-icon-width: 32px;
- 
-  }
-
-
-
+      locals-icon { margin: 5px; }
     </style>  
   </head>
   <body unresolved>
-    <iron-icon class="green big" icon="locals-icons:first"></iron-icon>
-    <iron-icon icon="locals-icons:first"></iron-icon>
+  <div class="localscanvas">
+  <div class="localstypo">
+    <h1>The iconset of Locals</h1>
+    <div class="localswrapper">
+    <locals-icon icon="v" iconcolor="blue" large></locals-icon>
+    <locals-icon icon="plus" large></locals-icon>
+    <locals-icon icon="back" large></locals-icon>
+    </div>
+  </div>
+  </div>
+
+<!--     <iron-icon class="green big" icon="locals-icons:first"></iron-icon>
+    <iron-icon icon="locals-icons:first"></iron-icon> -->
   </body>
 </html>
