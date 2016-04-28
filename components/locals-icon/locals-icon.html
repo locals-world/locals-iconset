@@ -1,0 +1,172 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../locals-iconset/locals-iconset.html">
+<link rel="import" href="../locals-style/locals-style.html">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <locals-icon></locals-icon>
+
+Example:
+
+    <locals-icon>
+      <h2>Hello locals-icon</h2>
+    </locals-icon>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="locals-icon">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+
+        --icon-color: var(--locals-grey2);
+      }
+
+      .small {
+        display: block;
+        box-sizing: border-box;
+      --iron-icon-width: 20px;
+      --iron-icon-height: 20px;
+      --iron-icon-fill-color: var(--icon-color);
+      }
+
+      .normal {
+        display: block;
+        box-sizing: border-box;
+      --iron-icon-width: 32px;
+      --iron-icon-height: 32px;
+      --iron-icon-fill-color: var(--icon-color);
+      }
+
+
+      .big {
+        display: block;
+        box-sizing: border-box;
+      --iron-icon-width: 50px;
+      --iron-icon-height: 50px;
+      --iron-icon-fill-color: var(--icon-color);
+      }
+
+      iron-icon svg {
+        border: 1px solid red;
+      }
+
+    </style>
+
+
+
+    <template is="dom-if" if="{{small}}">
+    <iron-icon class="small" icon="{{localsicon}}">
+      <content></content>
+    </iron-icon>
+    </template>
+
+    <template is="dom-if" if="{{normal}}">
+    <iron-icon class="normal" icon="{{localsicon}}">
+      <content></content>
+    </iron-icon>
+    </template>
+
+    <template is="dom-if" if="{{big}}">
+    <iron-icon class="big" icon="{{localsicon}}">
+      <content></content>
+    </iron-icon>
+    </template>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'locals-icon',
+
+      properties: {
+
+        icon: {
+          type:String,
+          value: 'first',
+          observer: '_icon'
+        },
+
+        localsicon: {
+          type:String,
+        },
+
+
+        normal: {
+          type: Boolean,
+          value: true
+        },
+
+
+        big: {
+          type: Boolean,
+          value: false,
+          observer: '_notnormal'
+        },
+
+        small: {
+          type: Boolean,
+          value: false,
+          observer: '_notnormal'
+        },
+
+        iconcolor: {
+          type: String,
+          observer: '_iconcolor'
+        },
+
+
+      },
+
+      // Element Lifecycle
+
+      ready: function() {
+      },
+
+      attached: function() {
+      },
+
+      detached: function() {
+      },
+
+      _icon: function() {
+        this.localsicon = 'locals-icons:' + this.icon;
+      },
+
+      _notnormal:function(){
+        if (this.big | this.small) {
+        this.normal = false;
+        }
+      },
+
+      _iconcolor: function(iconcolor) {
+        // console.log(this.iconcolor);
+        this.iconcolorcomplete = 'var(--locals-'+this.iconcolor+')';
+        this.customStyle['--icon-color'] = this.iconcolorcomplete;
+        this.updateStyles();
+      }
+
+
+    });
+  </script>
+</dom-module>
